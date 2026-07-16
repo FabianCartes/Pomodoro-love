@@ -39,7 +39,7 @@ export const TimerDisplay = ({ isDark }) => {
 
   return (
     <div className="flex flex-col items-center justify-center my-4 md:my-6">
-      <div className={`relative flex items-center justify-center w-[280px] h-[280px] md:w-[380px] md:h-[380px] lg:w-[440px] lg:h-[440px] rounded-full shadow-2xl ${outerRingColor}`}>
+      <div className={`relative flex items-center justify-center w-[280px] h-[280px] md:w-[380px] md:h-[380px] lg:w-[440px] lg:h-[440px] rounded-full shadow-2xl overflow-hidden ${outerRingColor}`}>
         
         {/* Ring of Paw Prints - Rotates when active */}
         <div className={`absolute inset-0 rounded-full flex items-center justify-center pointer-events-none ${isActive ? 'animate-[spin_15s_linear_infinite]' : ''}`}>
@@ -53,7 +53,7 @@ export const TimerDisplay = ({ isDark }) => {
               >
                 <PawPrint 
                   size={isDark ? 20 : 24} 
-                  className={`mt-6 md:mt-8 ${isDark ? 'text-orange-300/30' : 'text-[#fbd2b3]'} fill-current transition-all`} 
+                  className={`mt-2 md:mt-3 lg:mt-4 ${isDark ? 'text-orange-300/30' : 'text-[#fbd2b3]'} fill-current transition-all`} 
                   style={{ transform: `rotate(180deg)` }} // Orient the paw correctly
                 />
               </div>
