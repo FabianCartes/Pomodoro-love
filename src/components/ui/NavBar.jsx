@@ -36,7 +36,7 @@ export const NavBar = ({ isDark }) => {
                 <motion.div
                   layoutId="navbar-indicator"
                   className={`absolute inset-0 rounded-2xl shadow-md -z-10 ${isDark ? 'bg-white/90 border border-white' : 'bg-white/90 border border-white/60'}`}
-                  transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               )}
             </button>

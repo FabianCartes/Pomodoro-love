@@ -71,7 +71,7 @@ export const ConfigPanel = ({ isDark }) => {
                     <motion.div
                       layoutId="activeTabIndicator"
                       className={`absolute inset-0 rounded-xl shadow-md -z-10 ${isDark ? 'bg-white/90 border border-white' : 'bg-white/90 border border-white/60'}`}
-                      transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
                   )}
                   {tab.label}
@@ -143,7 +143,7 @@ export const ConfigPanel = ({ isDark }) => {
                     <motion.div
                       layoutId="activeCycleIndicator"
                       className={`absolute inset-0 rounded-xl shadow-md -z-10 ${isDark ? 'bg-white/90 border border-white' : 'bg-white/90 border border-white/60'}`}
-                      transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
                   )}
                   <PawPrint 
