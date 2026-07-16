@@ -81,8 +81,9 @@ export const ProgressiveScene = ({ isDark }) => {
     return null; // Handled by App.jsx layout
   }
 
-  const totalTime = currentPhase === 'study' ? studyConfig.studyTime : studyConfig.breakTime;
-  const progress = totalTime > 0 ? 1 - (timeRemaining / totalTime) : 0; // 0.0 to 1.0
+  // Safely get progress (0.0 to 1.0) using the already calculated percentage
+  const { progressPercentage } = useTimer();
+  const progress = progressPercentage ? Math.max(0, Math.min(1, progressPercentage / 100)) : 0;
 
   if (currentPhase === 'break') {
     return (

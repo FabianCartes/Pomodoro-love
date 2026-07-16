@@ -93,7 +93,7 @@ export const UniverseBackground = () => {
     const nebulaMesh = new THREE.Mesh(bgGeometry, bgMaterial);
     universe.add(nebulaMesh);
 
-    const particleCount = 65000;
+    const particleCount = 15000;
     const starGeometry = new THREE.BufferGeometry();
     
     const positions = new Float32Array(particleCount * 3);

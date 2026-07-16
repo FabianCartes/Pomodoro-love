@@ -48,72 +48,78 @@ export const ConfigPanel = ({ isDark }) => {
           <label className={`block text-xs font-bold uppercase tracking-wider ${mutedText} flex items-center gap-1`}>
             <Clock size={12} /> Bloques de Tiempo
           </label>
-          <div className={`flex p-1 rounded-[1.25rem] backdrop-blur-sm shadow-md ${isDark ? 'bg-black/30 border border-white/10' : 'bg-white/40 border border-white/40'} relative`}>
-            {[
-              { id: '15m', label: '15m / 5m', action: () => { setIsCustom(false); updateStudyConfig(15, 5); } },
-              { id: '30m', label: '30m / 10m', action: () => { setIsCustom(false); updateStudyConfig(30, 10); } },
-              { id: 'custom', label: 'Custom', action: () => setIsCustom(true) }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={tab.action}
-                className={`relative flex-1 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 z-10 ${
-                  activeTab === tab.id 
-                    ? (isDark ? 'text-gray-900' : 'text-cat-brown') 
-                    : (isDark ? 'text-white/80 hover:bg-white/10' : 'text-cat-dark/80 hover:bg-white/30')
-                }`}
-              >
-                {activeTab === tab.id && (
-                  <motion.div
-                    layoutId="activeTabIndicator"
-                    className={`absolute inset-0 rounded-xl shadow-md -z-10 ${isDark ? 'bg-white/90 border border-white' : 'bg-white/90 border border-white/60'}`}
-                    transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
-                  />
-                )}
-                {tab.label}
-              </button>
-            ))}
+          <div className="relative">
+            {/* Presets Segmented Control */}
+            <motion.div 
+              animate={{ opacity: isCustom ? 0 : 1, pointerEvents: isCustom ? 'none' : 'auto' }}
+              className={`flex p-1 rounded-[1.25rem] backdrop-blur-sm shadow-md ${isDark ? 'bg-black/30 border border-white/10' : 'bg-white/40 border border-white/40'} relative transition-opacity duration-300`}
+            >
+              {[
+                { id: '15m', label: '15m / 5m', action: () => { setIsCustom(false); updateStudyConfig(15, 5); } },
+                { id: '30m', label: '30m / 10m', action: () => { setIsCustom(false); updateStudyConfig(30, 10); } },
+                { id: 'custom', label: 'Custom', action: () => setIsCustom(true) }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={tab.action}
+                  className={`relative flex-1 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 z-10 ${
+                    activeTab === tab.id 
+                      ? (isDark ? 'text-gray-900' : 'text-cat-brown') 
+                      : (isDark ? 'text-white/80 hover:bg-white/10' : 'text-cat-dark/80 hover:bg-white/30')
+                  }`}
+                >
+                  {activeTab === tab.id && (
+                    <motion.div
+                      layoutId="activeTabIndicator"
+                      className={`absolute inset-0 rounded-xl shadow-md -z-10 ${isDark ? 'bg-white/90 border border-white' : 'bg-white/90 border border-white/60'}`}
+                      transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                    />
+                  )}
+                  {tab.label}
+                </button>
+              ))}
+            </motion.div>
+
+            {/* Custom Input Fields as absolute overlay to prevent height expansion */}
+            <AnimatePresence>
+              {isCustom && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className={`absolute -top-4 left-0 right-0 flex items-end gap-3 p-3 rounded-2xl z-20 backdrop-blur-xl shadow-xl border ${isDark ? 'bg-black/60 border-white/10' : 'bg-white/80 border-white/60'}`}
+                >
+                  <div className="flex-1">
+                    <label className={`block text-[10px] font-bold mb-1 uppercase tracking-wider ${mutedText}`}>Estudio</label>
+                    <input 
+                      type="number" 
+                      value={customStudy}
+                      onChange={(e) => setCustomStudy(Number(e.target.value))}
+                      className={`w-full rounded-xl px-3 py-2 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className={`block text-[10px] font-bold mb-1 uppercase tracking-wider ${mutedText}`}>Recreo</label>
+                    <input 
+                      type="number" 
+                      value={customBreak}
+                      onChange={(e) => setCustomBreak(Number(e.target.value))}
+                      className={`w-full rounded-xl px-3 py-2 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
+                    />
+                  </div>
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => { applyCustom(); setIsCustom(false); }}
+                    className={`h-[38px] w-[38px] shrink-0 rounded-xl shadow-lg flex items-center justify-center transition-colors ${isDark ? 'bg-cat-peach text-cat-dark hover:bg-cat-accent' : 'bg-cat-accent text-white hover:bg-cat-peach'}`}
+                  >
+                    <CheckCircle2 size={18} />
+                  </motion.button>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
-
-        {/* Custom Input Fields */}
-        <AnimatePresence>
-          {isCustom && (
-            <motion.div 
-              initial={{ opacity: 0, height: 0, scale: 0.95 }}
-              animate={{ opacity: 1, height: 'auto', scale: 1 }}
-              exit={{ opacity: 0, height: 0, scale: 0.95 }}
-              className="flex items-end gap-3"
-            >
-              <div className="flex-1">
-                <label className={`block text-xs font-semibold mb-1 ${mutedText}`}>Estudio (min)</label>
-                <input 
-                  type="number" 
-                  value={customStudy}
-                  onChange={(e) => setCustomStudy(Number(e.target.value))}
-                  className={`w-full rounded-xl px-4 py-2.5 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
-                />
-              </div>
-              <div className="flex-1">
-                <label className={`block text-xs font-semibold mb-1 ${mutedText}`}>Recreo (min)</label>
-                <input 
-                  type="number" 
-                  value={customBreak}
-                  onChange={(e) => setCustomBreak(Number(e.target.value))}
-                  className={`w-full rounded-xl px-4 py-2.5 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
-                />
-              </div>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={applyCustom}
-                className={`h-[44px] px-4 rounded-xl shadow-lg flex items-center justify-center transition-colors ${isDark ? 'bg-cat-peach text-cat-dark hover:bg-cat-accent' : 'bg-cat-accent text-white hover:bg-cat-peach'}`}
-              >
-                <CheckCircle2 size={20} />
-              </motion.button>
-            </motion.div>
-          )}
-        </AnimatePresence>
 
         {/* Cycle Config */}
         <div className="space-y-2 pt-2">

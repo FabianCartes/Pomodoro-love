@@ -16,11 +16,21 @@ export const ChromaKeyVideo = ({ src, className }) => {
       if (video.paused || video.ended) {
         return;
       }
+      // Limit processing resolution to max 480px wide for performance
+      const MAX_WIDTH = 480;
+      let targetWidth = video.videoWidth;
+      let targetHeight = video.videoHeight;
       
-      // Ensure canvas matches video dimensions
-      if (canvas.width !== video.videoWidth) {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+      if (targetWidth > MAX_WIDTH) {
+        const ratio = MAX_WIDTH / targetWidth;
+        targetWidth = MAX_WIDTH;
+        targetHeight = Math.floor(targetHeight * ratio);
+      }
+
+      // Ensure canvas matches target dimensions
+      if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
       }
 
       // Draw the current video frame to the canvas
