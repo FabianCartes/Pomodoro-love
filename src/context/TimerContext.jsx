@@ -17,10 +17,12 @@ export const TimerProvider = ({ children }) => {
   const [currentPhase, setCurrentPhase] = useState('study'); // 'study', 'break'
   const [currentCycle, setCurrentCycle] = useState(1);
   const [maxCycles, setMaxCycles] = useState('infinity'); // 2, 3, 4, 'infinity'
-  
   const [isActive, setIsActive] = useState(false);
   const intervalRef = useRef(null);
   const transitionTimeoutRef = useRef(null);
+
+  // User preferences
+  const [animationsEnabled, setAnimationsEnabled] = useState(true);
 
   // Transition state
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -180,7 +182,9 @@ export const TimerProvider = ({ children }) => {
         updateStudyConfig,
         progressPercentage,
         isTransitioning,
-        transitionMessage
+        transitionMessage,
+        animationsEnabled,
+        setAnimationsEnabled
       }}
     >
       {children}

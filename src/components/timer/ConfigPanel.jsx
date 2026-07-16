@@ -4,15 +4,19 @@ import { Settings, CheckCircle2, Clock, RotateCcw, PawPrint } from 'lucide-react
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const ConfigPanel = ({ isDark }) => {
-  const { mode, updateStudyConfig, setMaxCycles, maxCycles, studyConfig } = useTimer();
+  const { mode, updateStudyConfig, setMaxCycles, maxCycles, studyConfig, animationsEnabled, setAnimationsEnabled } = useTimer();
   const [isCustom, setIsCustom] = useState(false);
-  const [customStudy, setCustomStudy] = useState(25);
-  const [customBreak, setCustomBreak] = useState(5);
+  const [customStudy, setCustomStudy] = useState('25');
+  const [customBreak, setCustomBreak] = useState('5');
 
   if (mode !== 'study') return null;
 
   const applyCustom = () => {
-    updateStudyConfig(customStudy, customBreak);
+    const s = Number(customStudy) || 25;
+    const b = Number(customBreak) || 5;
+    updateStudyConfig(s, b);
+    setCustomStudy(String(s));
+    setCustomBreak(String(b));
   };
 
   // Determine which preset is currently active based on context config
@@ -34,11 +38,22 @@ export const ConfigPanel = ({ isDark }) => {
       {/* Decorative gradient orb */}
       <div className="absolute -top-20 -right-20 w-40 h-40 bg-cat-pink opacity-20 blur-[50px] group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
 
-      <div className={`flex items-center gap-2 mb-2 drop-shadow-sm ${textColor}`}>
-        <div className={`p-1.5 rounded-xl ${isDark ? 'bg-white/10' : 'bg-black/5'}`}>
-          <Settings size={18} className={isDark ? 'text-cat-cream' : 'text-cat-accent'} />
+      <div className={`flex items-center justify-between mb-2 drop-shadow-sm ${textColor}`}>
+        <div className="flex items-center gap-2">
+          <div className={`p-1.5 rounded-xl ${isDark ? 'bg-white/10' : 'bg-black/5'}`}>
+            <Settings size={18} className={isDark ? 'text-cat-cream' : 'text-cat-accent'} />
+          </div>
+          <h2 className="text-lg font-extrabold tracking-tight">Plan de Estudio</h2>
         </div>
-        <h2 className="text-lg font-extrabold tracking-tight">Plan de Estudio</h2>
+        
+        {/* Animation Toggle */}
+        <button 
+          onClick={() => setAnimationsEnabled(!animationsEnabled)}
+          className={`p-2 rounded-xl transition-colors ${animationsEnabled ? (isDark ? 'bg-white/20 text-white' : 'bg-cat-accent/20 text-cat-accent') : (isDark ? 'bg-black/40 text-white/40' : 'bg-black/5 text-black/40')}`}
+          title={animationsEnabled ? "Desactivar animaciones espaciales" : "Activar animaciones espaciales"}
+        >
+          {animationsEnabled ? <PawPrint size={16} /> : <div className="relative"><PawPrint size={16} className="opacity-50" /><div className="absolute inset-0 flex items-center justify-center"><div className="w-full h-0.5 bg-current rotate-45" /></div></div>}
+        </button>
       </div>
       
       <div className="space-y-2 relative z-10">
@@ -93,7 +108,7 @@ export const ConfigPanel = ({ isDark }) => {
                     <input 
                       type="number" 
                       value={customStudy}
-                      onChange={(e) => setCustomStudy(Number(e.target.value))}
+                      onChange={(e) => setCustomStudy(e.target.value)}
                       className={`w-full rounded-xl px-3 py-1.5 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
                     />
                   </div>
@@ -102,7 +117,7 @@ export const ConfigPanel = ({ isDark }) => {
                     <input 
                       type="number" 
                       value={customBreak}
-                      onChange={(e) => setCustomBreak(Number(e.target.value))}
+                      onChange={(e) => setCustomBreak(e.target.value)}
                       className={`w-full rounded-xl px-3 py-1.5 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
                     />
                   </div>

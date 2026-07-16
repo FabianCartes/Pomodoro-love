@@ -14,7 +14,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Separate content component to use TimerContext
 const AppContent = ({ isDark, setIsDark }) => {
-  const { mode, isTransitioning, transitionMessage } = useTimer();
+  const { mode, isTransitioning, transitionMessage, animationsEnabled } = useTimer();
 
   return (
     <>
@@ -71,12 +71,12 @@ const AppContent = ({ isDark, setIsDark }) => {
         </header>
         
         {/* Main content - Dynamic Split Layout */}
-        <main className={`flex-1 w-full mx-auto px-4 md:px-12 flex flex-col md:flex-row gap-4 pb-2 z-10 relative mt-0 ${mode === 'study' ? 'max-w-[1600px]' : 'max-w-4xl justify-center items-center'}`}>
+        <main className={`flex-1 w-full mx-auto px-4 md:px-12 flex flex-col md:flex-row gap-4 pb-2 z-10 relative mt-0 ${mode === 'study' && animationsEnabled ? 'max-w-[1600px]' : 'max-w-4xl justify-center items-center'}`}>
           
           {/* Left Column: UI Controls (Centers when not in study mode) */}
           <motion.div 
             layout
-            className={`flex flex-col gap-2 w-full shrink-0 justify-center transition-all duration-500 ${mode === 'study' ? 'md:w-1/2' : 'md:w-full items-center mt-12 md:mt-0'}`}
+            className={`flex flex-col gap-2 w-full shrink-0 justify-center transition-all duration-500 ${mode === 'study' && animationsEnabled ? 'md:w-1/2' : 'md:w-full items-center mt-12 md:mt-0'}`}
           >
             {/* Timer Display */}
             <motion.div layout className={`px-4 py-4 rounded-[3rem] backdrop-blur-xl shadow-2xl flex flex-col items-center w-full ${isDark ? 'bg-black/40 border border-white/10' : 'bg-white/30 border border-white/40'}`}>
@@ -94,7 +94,7 @@ const AppContent = ({ isDark, setIsDark }) => {
 
           {/* Right Column: Progress Animation (Only visible in study mode) */}
           <AnimatePresence>
-            {mode === 'study' && (
+            {mode === 'study' && animationsEnabled && (
               <motion.div 
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
