@@ -1,8 +1,8 @@
-# 🚀 Pomodoro Love 🐱💖
+# 🚀 Pomodoro Love 
 
 ¡Bienvenido a **Pomodoro Love**! Una aplicación web de productividad, cronómetro y temporizador de estudio con una estética visual premium y altamente dinámica. Esta aplicación transforma la clásica técnica Pomodoro en una experiencia inmersiva e interactiva, protagonizada por nuestro querido Gato Espacial.
 
-## 🌟 Características Principales
+##  Características Principales
 
 *   **⏱️ Múltiples Modos de Tiempo:** 
     *   **Cronómetro (Stopwatch):** Para medir el tiempo que pasas en una tarea sin límites.
@@ -16,7 +16,7 @@
 *   **🎬 Transiciones Cinemáticas:** Al terminar un ciclo de estudio o descanso, la pantalla despliega un hermoso mensaje flotante a pantalla completa para avisarte del cambio de fase sin que tengas que hacer clic en nada.
 *   **🎥 Recreo Espacial 3D:** Durante la fase de descanso, entra a un modo cinemático con estrellas 3D viajando por el espacio y un gato relajándose frente a ti.
 
-## 🛠️ Tecnologías Usadas
+##  Tecnologías Usadas
 
 Este proyecto está construido con herramientas de vanguardia para asegurar el máximo rendimiento y la mejor experiencia de desarrollo:
 
@@ -26,7 +26,7 @@ Este proyecto está construido con herramientas de vanguardia para asegurar el m
 *   **Framer Motion** (Para transiciones complejas, animaciones físicas y efectos de interfaz fluidos)
 *   **Lucide React** (Para toda la iconografía de la aplicación)
 
-## 📦 Instalación y Ejecución Local
+##  Instalación y Ejecución Local
 
 Para correr este proyecto en tu propia máquina, sigue estos pasos:
 
