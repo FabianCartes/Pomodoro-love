@@ -48,5 +48,4 @@ Para correr este proyecto en tu propia máquina, sigue estos pasos:
    ```
 5. Abre tu navegador en `http://localhost:5173/` y ¡disfruta estudiando!
 
----
-*Hecho con amor y estrellas para mejorar tus horas de estudio.* ✨🚀
+
