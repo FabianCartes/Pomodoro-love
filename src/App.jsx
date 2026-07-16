@@ -50,7 +50,7 @@ const AppContent = ({ isDark, setIsDark }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className={`h-screen overflow-hidden flex flex-col font-sans transition-colors duration-500 selection:bg-cat-pink ${isDark ? 'text-cat-cream' : 'text-cat-dark'}`}
+        className={`min-h-[100dvh] overflow-x-hidden overflow-y-auto flex flex-col font-sans transition-colors duration-500 selection:bg-cat-pink ${isDark ? 'text-cat-cream' : 'text-cat-dark'}`}
       >
         {/* Header row */}
         <header className="w-full grid grid-cols-[auto_1fr_auto] items-center px-4 md:px-8 py-2 md:py-3 shrink-0 gap-2 md:gap-4 z-20">

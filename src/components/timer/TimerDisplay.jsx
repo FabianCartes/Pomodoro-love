@@ -38,8 +38,8 @@ export const TimerDisplay = ({ isDark }) => {
   const subtleText = isDark ? 'text-white/50' : 'text-black/40';
 
   return (
-    <div className="flex flex-col items-center justify-center my-6">
-      <div className={`relative flex items-center justify-center w-[340px] h-[340px] md:w-[540px] md:h-[540px] rounded-full shadow-2xl ${outerRingColor}`}>
+    <div className="flex flex-col items-center justify-center my-4 md:my-6">
+      <div className={`relative flex items-center justify-center w-[280px] h-[280px] md:w-[380px] md:h-[380px] lg:w-[440px] lg:h-[440px] rounded-full shadow-2xl ${outerRingColor}`}>
         
         {/* Ring of Paw Prints - Rotates when active */}
         <div className={`absolute inset-0 rounded-full flex items-center justify-center pointer-events-none ${isActive ? 'animate-[spin_15s_linear_infinite]' : ''}`}>
@@ -63,11 +63,11 @@ export const TimerDisplay = ({ isDark }) => {
 
         {/* Inner White Circle */}
         <div className={`relative flex flex-col items-center justify-center w-[76%] h-[76%] rounded-full shadow-inner border border-black/5 ${innerCircleColor}`}>
-          <div className={`font-mono text-[4rem] md:text-[7rem] font-extrabold tracking-tighter flex items-baseline ${textColor}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
+          <div className={`font-mono text-[3.5rem] md:text-[5rem] lg:text-[6rem] font-extrabold tracking-tighter flex items-baseline ${textColor}`} style={{ fontVariantNumeric: 'tabular-nums' }}>
             {formatTime(displayTime)}
-            {mode === 'stopwatch' && <span className="text-3xl md:text-5xl text-orange-400 ml-1 md:ml-2 opacity-80">.{milliseconds.toString().padStart(2, '0')}</span>}
+            {mode === 'stopwatch' && <span className="text-2xl md:text-3xl lg:text-4xl text-orange-400 ml-1 md:ml-2 opacity-80">.{milliseconds.toString().padStart(2, '0')}</span>}
           </div>
-          <span className={`mt-2 md:mt-4 text-xl md:text-2xl font-bold ${subtleText} lowercase`} style={{ fontFamily: "'Quicksand', sans-serif" }}>
+          <span className={`mt-1 md:mt-3 text-lg md:text-xl font-bold ${subtleText} lowercase`} style={{ fontFamily: "'Quicksand', sans-serif" }}>
             {isActive ? 'en progreso...' : 'listo para empezar'}
           </span>
         </div>
