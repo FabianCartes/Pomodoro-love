@@ -1,16 +1,52 @@
-# React + Vite
+# 🚀 Pomodoro Love 🐱💖
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+¡Bienvenido a **Pomodoro Love**! Una aplicación web de productividad, cronómetro y temporizador de estudio con una estética visual premium y altamente dinámica. Esta aplicación transforma la clásica técnica Pomodoro en una experiencia inmersiva e interactiva, protagonizada por nuestro querido Gato Espacial.
 
-Currently, two official plugins are available:
+## 🌟 Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+*   **⏱️ Múltiples Modos de Tiempo:** 
+    *   **Cronómetro (Stopwatch):** Para medir el tiempo que pasas en una tarea sin límites.
+    *   **Temporizador (Timer):** Cuenta regresiva clásica.
+    *   **Plan de Estudio (Study):** Sistema Pomodoro automatizado. Divide tu tiempo en ciclos de concentración intensa y descansos relajantes.
+*   **🎨 Diseño "Glassmorphism" Premium:** Interfaz translúcida de cristal, con desenfoques en tiempo real y bordes suaves.
+*   **🌌 Fondos Dinámicos (Mesh Gradient):** El fondo de la aplicación es un hermoso gradiente animado en CSS puro que cambia dinámicamente de colores:
+    *   Modo Día (Pasteles Cálidos) / Modo Noche (Colores "Lofi Dreamy").
+    *   Fase de Estudio (Tonos de Concentración) / Fase de Recreo (Tonos Relajantes).
+*   **🚀 Eventos de Pantalla Aleatorios:** Durante tu sesión de estudio, si prestas atención al cielo, podrías ver de vez en cuando a nuestro Gato Espacial volando, pájaros aleteando o un OVNI de paso.
+*   **🎬 Transiciones Cinemáticas:** Al terminar un ciclo de estudio o descanso, la pantalla despliega un hermoso mensaje flotante a pantalla completa para avisarte del cambio de fase sin que tengas que hacer clic en nada.
+*   **🎥 Recreo Espacial 3D:** Durante la fase de descanso, entra a un modo cinemático con estrellas 3D viajando por el espacio y un gato relajándose frente a ti.
 
-## React Compiler
+## 🛠️ Tecnologías Usadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Este proyecto está construido con herramientas de vanguardia para asegurar el máximo rendimiento y la mejor experiencia de desarrollo:
 
-## Expanding the Oxlint configuration
+*   **React 18** (Librería principal)
+*   **Vite** (Empaquetador ultrarrápido)
+*   **Tailwind CSS v4** (Para todos los estilos, animaciones CSS personalizadas y diseño responsivo)
+*   **Framer Motion** (Para transiciones complejas, animaciones físicas y efectos de interfaz fluidos)
+*   **Lucide React** (Para toda la iconografía de la aplicación)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 📦 Instalación y Ejecución Local
+
+Para correr este proyecto en tu propia máquina, sigue estos pasos:
+
+1. **Clona el repositorio:**
+   ```bash
+   git clone https://github.com/FabianCartes/Pomodoro-love.git
+   ```
+2. **Entra al directorio:**
+   ```bash
+   cd Pomodoro-love
+   ```
+3. **Instala las dependencias:**
+   ```bash
+   npm install
+   ```
+4. **Ejecuta el servidor de desarrollo:**
+   ```bash
+   npm run dev
+   ```
+5. Abre tu navegador en `http://localhost:5173/` y ¡disfruta estudiando!
+
+---
+*Hecho con amor y estrellas para mejorar tus horas de estudio.* ✨🚀
