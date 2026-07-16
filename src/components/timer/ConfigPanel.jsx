@@ -29,19 +29,19 @@ export const ConfigPanel = ({ isDark }) => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`w-full max-w-lg mx-auto rounded-[3rem] px-6 py-5 backdrop-blur-xl shadow-2xl border ${panelBg} relative overflow-hidden group`}
+      className={`w-full max-w-lg mx-auto rounded-[3rem] px-5 py-4 backdrop-blur-xl shadow-2xl border ${panelBg} relative overflow-hidden group`}
     >
       {/* Decorative gradient orb */}
       <div className="absolute -top-20 -right-20 w-40 h-40 bg-cat-pink opacity-20 blur-[50px] group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
 
-      <div className={`flex items-center gap-2 mb-3 drop-shadow-sm ${textColor}`}>
-        <div className={`p-2 rounded-xl ${isDark ? 'bg-white/10' : 'bg-black/5'}`}>
-          <Settings size={20} className={isDark ? 'text-cat-cream' : 'text-cat-accent'} />
+      <div className={`flex items-center gap-2 mb-2 drop-shadow-sm ${textColor}`}>
+        <div className={`p-1.5 rounded-xl ${isDark ? 'bg-white/10' : 'bg-black/5'}`}>
+          <Settings size={18} className={isDark ? 'text-cat-cream' : 'text-cat-accent'} />
         </div>
-        <h2 className="text-xl font-extrabold tracking-tight">Plan de Estudio</h2>
+        <h2 className="text-lg font-extrabold tracking-tight">Plan de Estudio</h2>
       </div>
       
-      <div className="space-y-3 relative z-10">
+      <div className="space-y-2 relative z-10">
         
         {/* Animated Segmented Control for Presets */}
         <div className="space-y-2">
@@ -51,8 +51,7 @@ export const ConfigPanel = ({ isDark }) => {
           <div className="relative">
             {/* Presets Segmented Control */}
             <motion.div 
-              animate={{ opacity: isCustom ? 0 : 1, pointerEvents: isCustom ? 'none' : 'auto' }}
-              className={`flex p-1 rounded-[1.25rem] backdrop-blur-sm shadow-md ${isDark ? 'bg-black/30 border border-white/10' : 'bg-white/40 border border-white/40'} relative transition-opacity duration-300`}
+              className={`flex p-1 rounded-[1.25rem] backdrop-blur-sm shadow-md ${isDark ? 'bg-black/30 border border-white/10' : 'bg-white/40 border border-white/40'} relative`}
             >
               {[
                 { id: '15m', label: '15m / 5m', action: () => { setIsCustom(false); updateStudyConfig(15, 5); } },
@@ -62,7 +61,7 @@ export const ConfigPanel = ({ isDark }) => {
                 <button
                   key={tab.id}
                   onClick={tab.action}
-                  className={`relative flex-1 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 z-10 ${
+                  className={`relative flex-1 py-2 rounded-xl text-sm font-bold transition-all duration-300 z-10 ${
                     activeTab === tab.id 
                       ? (isDark ? 'text-gray-900' : 'text-cat-brown') 
                       : (isDark ? 'text-white/80 hover:bg-white/10' : 'text-cat-dark/80 hover:bg-white/30')
@@ -80,38 +79,38 @@ export const ConfigPanel = ({ isDark }) => {
               ))}
             </motion.div>
 
-            {/* Custom Input Fields as absolute overlay to prevent height expansion */}
+            {/* Custom Input Fields (Inline expansion) */}
             <AnimatePresence>
               {isCustom && (
                 <motion.div 
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  className={`absolute -top-4 left-0 right-0 flex items-end gap-3 p-3 rounded-2xl z-20 backdrop-blur-xl shadow-xl border ${isDark ? 'bg-black/60 border-white/10' : 'bg-white/80 border-white/60'}`}
+                  initial={{ opacity: 0, height: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, height: 'auto', scale: 1 }}
+                  exit={{ opacity: 0, height: 0, scale: 0.95 }}
+                  className="flex items-end gap-3 mt-2 overflow-hidden"
                 >
                   <div className="flex-1">
-                    <label className={`block text-[10px] font-bold mb-1 uppercase tracking-wider ${mutedText}`}>Estudio</label>
+                    <label className={`block text-[10px] font-bold mb-1 uppercase tracking-wider ${mutedText}`}>Estudio (min)</label>
                     <input 
                       type="number" 
                       value={customStudy}
                       onChange={(e) => setCustomStudy(Number(e.target.value))}
-                      className={`w-full rounded-xl px-3 py-2 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
+                      className={`w-full rounded-xl px-3 py-1.5 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
                     />
                   </div>
                   <div className="flex-1">
-                    <label className={`block text-[10px] font-bold mb-1 uppercase tracking-wider ${mutedText}`}>Recreo</label>
+                    <label className={`block text-[10px] font-bold mb-1 uppercase tracking-wider ${mutedText}`}>Recreo (min)</label>
                     <input 
                       type="number" 
                       value={customBreak}
                       onChange={(e) => setCustomBreak(Number(e.target.value))}
-                      className={`w-full rounded-xl px-3 py-2 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
+                      className={`w-full rounded-xl px-3 py-1.5 text-sm font-bold outline-none border-2 transition-all ${isDark ? 'bg-black/40 border-white/10 text-white focus:border-cat-accent' : 'bg-white/70 border-white text-cat-dark focus:border-cat-accent'}`}
                     />
                   </div>
                   <motion.button 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => { applyCustom(); setIsCustom(false); }}
-                    className={`h-[38px] w-[38px] shrink-0 rounded-xl shadow-lg flex items-center justify-center transition-colors ${isDark ? 'bg-cat-peach text-cat-dark hover:bg-cat-accent' : 'bg-cat-accent text-white hover:bg-cat-peach'}`}
+                    onClick={() => applyCustom()}
+                    className={`h-[36px] px-4 rounded-xl shadow-lg flex items-center justify-center transition-colors ${isDark ? 'bg-cat-peach text-cat-dark hover:bg-cat-accent' : 'bg-cat-accent text-white hover:bg-cat-peach'}`}
                   >
                     <CheckCircle2 size={18} />
                   </motion.button>
