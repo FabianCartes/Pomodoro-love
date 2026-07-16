@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cat-cream: #FFFBF0;
+  --color-cat-peach: #FFB085;
+  --color-cat-pink: #FFD1D1;
+  --color-cat-brown: #5C4033;
+  --color-cat-dark: #3A2820;
+  --color-cat-white: #FFFFFF;
+  --color-cat-accent: #FFA07A;
+  
+  /* New pastel colors requested by user */
+  --color-cat-purple: #E6D7FF;
+  --color-cat-purple-dark: #B098EA;
+  --color-cat-blue: #D7F0FF;
+  --color-cat-blue-dark: #90C6EA;
+  --color-cat-mint: #D7FFEB;
+  --color-cat-mint-dark: #8BD6B0;
+
+  --font-sans: 'Nunito', 'Quicksand', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-cat-cream);
+    color: var(--color-cat-brown);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+  }
+}
+
+@keyframes fast-fall {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.animate-fast-fall {
+  animation: fast-fall 0.3s linear infinite;
+}
+
+@keyframes fly-across {
+  0% { transform: translateX(-150px); }
+  100% { transform: translateX(calc(100vw + 150px)); }
+}
+
+.animate-fly-across {
+  animation: fly-across 20s linear infinite both;
+}
+
+@keyframes fly-across-reverse {
+  0% { transform: translateX(calc(100vw + 150px)); }
+  100% { transform: translateX(-150px); }
+}
+
+.animate-fly-across-reverse {
+  animation: fly-across-reverse 20s linear infinite both;
+}
+
+@keyframes flap {
+  0%, 100% { transform: scaleY(1) translateY(0); }
+  50% { transform: scaleY(0.4) translateY(4px); }
+}
+
+.animate-flap {
+  animation: flap 0.3s ease-in-out infinite;
+}
